@@ -13,6 +13,10 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 from environs import Env
 
+import logging
+
+from apps_bot.bot import management
+
 env = Env()
 env.read_env()
 
@@ -25,8 +29,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
+BOT_TOKEN = env('BOT_TOKEN')
+
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+
+DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = []
 
@@ -39,8 +46,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
     'apps_bot.bot',
-    # 'apps_bot.bot.management',
+    # 'apps_bot.management',
 ]
 
 MIDDLEWARE = [
@@ -124,3 +133,16 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# logging
+
+# logger = logging.getLogger(__name__)
+
+# logging.basicConfig(
+#     level=logging.DEBUG,
+#     filename='my_logging.log',
+#     format='%(levelname)s (%(asctime)s): %(message)s (line: %(lineno)d) [%(filename)s]',
+#     datefmt='%d/%m/%Y %I:%M:%S',
+#     encoding='utf-8',
+#     filemode='w')
