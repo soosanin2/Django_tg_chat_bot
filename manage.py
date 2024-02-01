@@ -38,7 +38,6 @@ if __name__ == '__main__':
 """
 
 
-
 def main():
     """Run administrative tasks."""
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'Config.settings')
