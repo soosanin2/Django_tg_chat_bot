@@ -31,6 +31,8 @@ SECRET_KEY = env('SECRET_KEY')
 
 BOT_TOKEN = env('BOT_TOKEN')
 
+Portmone_TOKEN = env('Portmone_TOKEN')
+
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = env('DEBUG')

@@ -10,16 +10,17 @@ from apps_bot.bot.keyboards.keyboards import kb_client
 from apps_bot.bot.keyboards.inline_keyboards import inl_kb
 from apps_bot.bot.filters.filters import EmailFilter, TwoWords, InText15
 from apps_bot.bot.LEXICONES.LEXICON import LEXICONE_ALL, LEXICON_MAIN_MENU
-
+from apps_bot.bot.utils.commands import set_commands
 
 logger = logging.getLogger(__name__)
 stic_dict = {'sticker_id': 'CAACAgIAAxkBAAIHgWWzgOskRP3A07G9XHHj9j-V9OW-AAJVPgAC-CqZSdQYG4ijLGxQNAQ'}
 
 
 # @dp.message(CommandStart())
-async def start_process(message: types.Message) -> None:
+async def start_process(message: types.Message, bot) -> None:
     await message.answer(text=f'{LEXICONE_ALL["start"]}<strong>{message.chat.username} </strong>')
     await message.answer(text="custom keyboard", reply_markup=kb_client)
+    await set_commands(bot)
     logger.info(f'{message.chat.username}')
 
 

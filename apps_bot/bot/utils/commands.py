@@ -1,5 +1,5 @@
 from aiogram import Bot
-from aiogram.types import  BotCommand, BotCommandScopeDefault
+from aiogram.types import BotCommand, BotCommandScopeDefault
 
 async def set_commands(bot: Bot):
     commands = [
@@ -16,8 +16,12 @@ async def set_commands(bot: Bot):
             description='дать последний присланный стикер'
             ),
         BotCommand(
-            command='stget_inlineart',
+            command='new_inline_keyboard',
             description='показать инлайн клавиатуру'
             ),
-
+        BotCommand(
+            command='pay',
+            description='Купить товар без доставки'
+            ),
     ]
+    await bot.set_my_commands(commands, scope=BotCommandScopeDefault())

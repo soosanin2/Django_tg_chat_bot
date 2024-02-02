@@ -10,14 +10,14 @@ from aiogram.fsm.storage.redis import RedisStorage
 from environs import Env
 
 from Config.settings import BOT_TOKEN
+from apps_bot.Pays.handlers.pays import register_pays_handlers
 
 # from apps_bot.bot.keyboards.keyboards import kb_client
 # from apps_bot.bot.filters.filters import EmailFilter
 from apps_bot.bot.handlers.user_handlers import register_user_handlers
 from apps_bot.bot.handlers.callback_handlers import register_callback_handlers
 from apps_bot.bot.middelwares.middlewares import ThrottlingMiddleware
-
-
+from apps_bot.bot.utils.commands import set_commands
 
 # logger = logging.getLogger(__name__)
 # storage = MemoryStorage()
@@ -30,10 +30,14 @@ env.read_env()
 bot = Bot(token=BOT_TOKEN, parse_mode='HTML')
 dp.message.middleware.register(ThrottlingMiddleware(storage=storage_throttling))
 
+# set_commands(bot)
+# async def start_bot(bot):
+#     await set_commands(bot)
 
 def register_handlers(dp: Dispatcher) -> None:
     register_user_handlers(dp)
     register_callback_handlers(dp)
+    register_pays_handlers(dp)
 
 register_handlers(dp)
 
